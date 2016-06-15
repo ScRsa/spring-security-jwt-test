@@ -65,30 +65,20 @@ public class ApplicationTests {
 
 	@Test
 	public void loginSucceeds() {
-		ResponseEntity<String> response = template.getForEntity("http://localhost:"
-				+ port + "/uaa/login", String.class);
-		String csrf = getCsrf(response.getBody());
-		MultiValueMap<String, String> form = new LinkedMultiValueMap<String, String>();
-		form.set("username", "user");
-		form.set("password", "password");
-		form.set("_csrf", csrf);
+		ResponseEntity<String> response = template.getForEntity("http://localhost:" + port + "/uaa/login", String.class);
+
+		MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+		form.set("username", "test");
+		form.set("password", "test");
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.put("COOKIE", response.getHeaders().get("Set-Cookie"));
-		RequestEntity<MultiValueMap<String, String>> request = new RequestEntity<MultiValueMap<String, String>>(
-				form, headers, HttpMethod.POST, URI.create("http://localhost:" + port
-						+ "/uaa/login"));
-		ResponseEntity<Void> location = template.exchange(request, Void.class);
-		assertEquals("http://localhost:" + port + "/uaa/",
-				location.getHeaders().getFirst("Location"));
-	}
 
-	private String getCsrf(String soup) {
-		Matcher matcher = Pattern.compile("(?s).*name=\"_csrf\".*?value=\"([^\"]+).*")
-				.matcher(soup);
-		if (matcher.matches()) {
-			return matcher.group(1);
-		}
-		return null;
+		URI url = URI.create("http://localhost:" + port + "/uaa/login");
+
+		RequestEntity<MultiValueMap<String, String>> request = RequestEntity.post(url).body(form);
+		ResponseEntity<Void> location = template.exchange(request, Void.class);
+		assertEquals("http://localhost:" + port + "/uaa/", location.getHeaders().getFirst("Location"));
 	}
 
 }

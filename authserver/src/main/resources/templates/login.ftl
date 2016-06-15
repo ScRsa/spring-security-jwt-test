@@ -1,27 +1,23 @@
 <html>
 <head>
-<link rel="stylesheet" href="css/wro.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-<#if RequestParameters['error']??>
-	<div class="alert alert-danger">
-		There was a problem logging in. Please try again.
-	</div>
-</#if>
-	<div class="container">
-		<form role="form" action="login" method="post">
-		  <div class="form-group">
-		    <label for="username">Username:</label>
-		    <input type="text" class="form-control" id="username" name="username"/>
-		  </div>
-		  <div class="form-group">
-		    <label for="password">Password:</label>
-		    <input type="password" class="form-control" id="password" name="password"/>
-		  </div>
-		  <#--<input type="hidden" id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-		  <button type="submit" class="btn btn-primary">Submit</button>
-		</form>
-	</div>
-	<script src="js/wro.js" type="text/javascript"></script>
+
+<div class="login-block">
+    <div class="logo"></div>
+    <form role="form" action="login" method="post">
+        <h1>Общий вход в систему</h1>
+        <input type="text" class="form-control" placeholder="Логин" id="username" name="username"/>
+        <input type="password" class="form-control" placeholder="Пароль" id="password" name="password"/>
+        <button>Войти</button>
+        <#if RequestParameters['error']??>
+        <div class="alert alert-danger">
+            Не верный логин или пароль. Пожалуйста повторите попытку.
+        </div>
+        </#if>
+    </form>
+</div>
+
 </body>
 </html>
