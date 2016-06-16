@@ -2,8 +2,6 @@ server:
   port: 9999
   contextPath: /uaa
 
-logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
+spring:
+  application:
+    name: AuthServer
