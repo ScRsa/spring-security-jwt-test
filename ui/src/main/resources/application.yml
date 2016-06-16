@@ -12,8 +12,8 @@ security:
     client:
       accessTokenUri: http://localhost:9999/uaa/oauth/token
       userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientId: acme
-      clientSecret: acmesecret
+      clientId: testApplication
+      clientSecret: secretTestApplication
     resource:
       jwt:
         keyValue: |

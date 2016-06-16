@@ -1,4 +1,4 @@
-package demo.controller;
+package ru.alfastrahoms.controller;
 
 import java.util.UUID;
 
