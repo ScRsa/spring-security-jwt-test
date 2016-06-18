@@ -21,7 +21,7 @@ public class UiApplication extends WebSecurityConfigurerAdapter {
 		http
 		  .csrf().disable()
 		  .logout().and().antMatcher("/**").authorizeRequests()
-		  .antMatchers("/index.html", "/home.html", "/", "/login").permitAll()
+		  .antMatchers("/index.html", "/home.html", "/", "/login", "/auth-service/**").permitAll()
 		  .anyRequest().authenticated();
 	}
 

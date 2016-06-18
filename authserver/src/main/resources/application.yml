@@ -1,7 +1,0 @@
-server:
-  port: 9999
-  contextPath: /uaa
-
-spring:
-  application:
-    name: AuthServer

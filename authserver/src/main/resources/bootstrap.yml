@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    config:
+      username: config
+      password: config
+      failFast: true
+      uri: http://10.23.2.27:9876/
